@@ -36,6 +36,7 @@ jobs:
           APP_IMAGE: ${{ env.APP_IMAGE }}
         run: |
           docker pull "$APP_IMAGE"
+          docker compose -f nginx/docker-compose.yml build nginx
           docker compose -f nginx/docker-compose.yml up -d --pull=always --no-build
 
           # Wait for nginx to serve the API
