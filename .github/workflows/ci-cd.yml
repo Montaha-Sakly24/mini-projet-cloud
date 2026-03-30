@@ -40,14 +40,14 @@ jobs:
 
           # Wait for nginx to serve the API
           for i in $(seq 1 20); do
-            if curl -fsS http://localhost:8081/tasks > /dev/null; then
+            if curl -kfsS https://localhost:8443/tasks > /dev/null; then
               echo "API is up"
               break
             fi
             sleep 2
           done
 
-          curl -fsS http://localhost:8081/tasks
+          curl -kfsS https://localhost:8443/tasks
           docker compose -f nginx/docker-compose.yml ps
 
       - name: Cleanup
